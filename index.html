@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <meta charset='utf-8'>
+    <meta content='IE=edge' http-equiv='X-UA-Compatible'>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(236, 231, 238);
+  color: white;
+  scroll-behavior: smooth;
+}
+
+#regForm {
+  background-color: #ffffff;
+  margin: 100px auto;
+  font-family: Raleway;
+  padding: 40px;
+  width: 70%;
+  min-width: 300px;
+}
+
+h1 {
+  text-align: center;
+  font-family: Arial;
+}
+h2 {
+  text-align: center;
+  font-family: Arial;
+}
+
+input[type="text"]{
+  padding: 10px;
+  width: 100%;
+  font-size: 13px;
+  font-family: arial;
+  border: 1px solid #aaaaaa;
+  height: 30px;
+}
+input[type="tel"]{
+  padding: 10px;
+  width: 100%;
+  font-size: 13px;
+  font-family: arial;
+  border: 1px solid #aaaaaa;
+  height: 30px;
+
+}
+input[type="email"]{
+  padding: 10px;
+  width: 100%;
+  font-size: 13px;
+  font-family: arial;
+  border: 1px solid #aaaaaa;
+  height: 30px;
+}
+::-webkit-input-placeholder {
+  font-size: 12px;
+}
+
+
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+  background-color: #f0e400;
+}
+
+/* Hide all steps by default: */
+.tab {
+  display: none;
+}
+
+button {
+  background-color: #4CAF50;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-family: Raleway;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+#prevBtn {
+  background-color: #bbbbbb;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #4CAF50;
+}
+.multiselect {
+  width: 300px;
+}
+
+.selectBox {
+  position: relative;
+}
+
+.selectBox select {
+  width: 100%;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+  background-color: white;
+  color: black;
+  padding: 6px;
+  font-size: 12px;
+}
+
+#checkboxes label {
+  display: block;
+}
+
+#checkboxes label:hover {
+  background-color: #1e90ff;
+}
+/*2nd checkbox*/
+#checkboxes2 {
+  display: none;
+  border: 1px #dadada solid;
+}
+
+#checkboxes2 label {
+  display: block;
+}
+
+#checkboxes2 label:hover {
+  background-color: #1e90ff;
+}
+</style>
+  </head>
+  <body>
+    <div class="container" style="background-color:rgb(236, 231, 238);">
+
+    </div>
+    <div class="container" style="padding-top:10px; background-color:#421359;">
+          <h1 style="font-size:20px; text-align:left; font-weight:lighter;">F2 - Job Seeking Form</h1>
+    <p style="font-size:13px;font-weight:lighter;">Kindly fill up the form with care and accuracy. You will be contacted by our GENESIS Placement Officer within 2 working days.</p>
+
+    <!-- Contact Form - sent to a Google Sheet -->
+    <form id='foo' action="post" name="foo">
+      <div class="tab">
+    <p><input placeholder="What is your name?..." oninput="this.className = ''" name="name" type="text"></p>
+    <div class="" style="padding-top:4px;">
+
+    </div>
+    <select class="gender" name="gender" style="font-size:13px;padding:6px; width:100%;" onblur="genderfunc2()" onfocus="genderfunc()" onchange="Genderfunc(this)">
+      <option id="blank"value="">What is your gender?</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+      <input id="gender-input" type="text" name="gender-input" style="display:none;">
+    </select>  <p id="gerror" style="color:red; font-size:12px;"></p>
+
+    <input id="age-input" type="text" name="age-input" placeholder="Your Age" style="font-size:12px; padding:10px;"><br><br>
+
+  <p><input id="phone" type="tel" name="phone" placeholder="Enter your 10 digit mobile number? " onblur="mobilefunction()"></p>
+  <p id="mobileerror" style="color:red; font-size:12px;"></p>
+
+  <p><input id="email" type="email" name="email" placeholder="What is your email id?"> </p>
+  <p id="emailerror" style="color:red;font-size:12px;"></p>
+
+  <p><input id="resident" type="text" name="resident" placeholder="Your Residential or Office Location"> </p>
+ <!--select box with multiselect checkbox-->
+
+    <div class="multiselect" style="width:100%;">
+    <div class="selectBox" onclick="showCheckboxes()">
+      <select style="font-size:12px;padding:6px;">
+        <option>What is your education background?</option>
+      </select>
+      <div class="overSelect"></div>
+    </div>
+    <div id="checkboxes">
+
+        <input type="checkbox" id="educational-background" name="educational-background"onClick="checkbox();" value="SSLC"/>SSLC<br>
+        <input type="checkbox" id="educational-background" name="educational-background"onClick="checkbox();" value="HSC"/>HSC/+2<br>
+        <input type="checkbox" id="educational-background" name="educational-background"onClick="checkbox();" value="B.Com"/>B.Com<br>
+        <input type="checkbox" id="educational-background" name="educational-background"onClick="checkbox();" value="BBA"/>BBA <br>
+        <input type="checkbox" id="educational-background" name="educational-background"onClick="checkbox();" value="BCA"/>BCA<br>
+        <input type="checkbox" id="educational-background" name="educational-background"onClick="checkbox();" value="BSc"/>BSc<br>
+        <input type="checkbox" id="educational-background" name="educational-background"onClick="checkbox();" value="BA"/>BA<br>
+        <input type="checkbox" id="educational-background" name="educational-background"onClick="checkbox();" value="BE"/>BE<br>
+        <input type="checkbox" id="educational-background" name="educational-background"onClick="checkbox();" value="M.Com"/>M.Com<br>
+        <input type="checkbox" id="educational-background" name="educational-background"onClick="checkbox();" value="MBA"/>MBA<br>
+        <input type="checkbox" id="educational-background" name="educational-background"onClick="checkbox();" value="MCA"/>MCA<br>
+        <input type="checkbox" id="educational-background" name="educational-background"onClick="checkbox();" value="MSc"/>MSc
+        <label>Other:</label><input type="text" id="education-status" name="education-status" style="font-size:12px; padding:10px;">
+
+    </div>
+  </div><br>
+
+  </div>
+  <div class="tab">
+
+    <div class="multiselect" style=" width:100%;">
+    <div class="selectBox" onclick="showCheckboxes2()">
+      <select style="font-size:12px;padding:6px;">
+        <option>Your Employability Skills</option>
+      </select>
+      <div class="overSelect"></div>
+    </div>
+    <div id="checkboxes2" style="background-color:white; color:black; font-size:13px; padding:6px;">
+    <input type="checkbox" name="knowledge-of" class="knowledge-of" onclick="add_sub(this);" value="Knowledge in Accounts">Knowledge in Accounts.<br>
+    <input type="checkbox" name="knowledge-of" class="knowledge-of" onclick="add_sub(this);" value="Knowledge in Tally">Knowledge in Tally.<br>
+    <input type="checkbox" name="knowledge-of" class="knowledge-of" onclick="add_sub(this);" value="Knowledge in GST">Knowledge in GST.<br>
+    <input type="checkbox" name="knowledge-of" class="knowledge-of" onclick="add_sub(this);" value="Knowledge in Payroll">Knowledge in Payroll.<br>
+    <input type="checkbox" name="knowledge-of" class="knowledge-of" onclick="add_sub(this);" value="Knowledge in MS-Office">Knowledge in MS-Office.<br>
+    <input type="checkbox" name="knowledge-of" class="knowledge-of" onclick="add_sub(this);" value="Knowledge in Typing">Knowledge in Typing.<br>
+    <label>Other</label><input type="text" name="knowledge" id="knowledge" style="font-size:12px; padding:10px;">
+
+  </div>
+
+</div><br>
+<select id="occupation" name="occupation" style="font-size:13px;padding:6px; width:100%;" onchange="Occp(this)">
+  <option id="blank" value="">Your Current Status</option>
+  <option value="Working & searching for a better job">Working & searching for a better job</option>
+  <option value="Unemployed & searching for a Job">Unemployed & searching for a Job</option>
+  <option value="Studying">Studying</option>
+  <option value="Doing Business">Doing Business</option>
+  <option value="">Others</option>
+</select>
+<input type="text" name="occupation-input" id="occupation-input" style="width:100%; padding:10px; font-size:12px; display:none;">
+<br><br>
+<!---->
+
+<select id="category" name="category" style="font-size:13px;padding:6px; width:100%;" onchange="Categ(this)">
+    <option value="">Your Category </option>
+    <option value="Fresher">Fresher</option>
+    <option value="Experienced in Accounts Domain">Experienced in Accounts Domain</option>
+    <option value="">Other</option>
+
+  </select>
+  <input type="text" name="category-input" id="category-input" style="width:100%; padding:10px; font-size:12px; display:none;">
+  <br><br>
+  <select id="experience" name="experience" style="font-size:13px;padding:6px; width:100%;" onchange="Expc(this)">
+    <option value="">Years of Experience in Accounts Domain</option>
+    <option value="0 - 1 Years">0 - 1 Years</option>
+    <option value="1 - 5 Years">1 - 5 Years</option>
+    <option value="5 - 10 Years">5 - 10 Years</option>
+    <option value="10+ Years">10+ Years</option>
+</select>
+<input type="text" name="experience-input" id="experience-input" style="width:100%; padding:10px; font-size:12px; display:none;">
+<br><br>
+
+<textarea id="anything-else" name="anything-else" rows="2" cols="50" placeholder="Do you want to ask us something more regarding your future or career?" style="font-face:arial; font-size:13px; width:100%;"></textarea><hr>
+<br>
+
+</div><br>
+<p id="formerror" style="color:red;font-size:12px;"></p>
+
+<!---->
+<div class="tab">
+  <h2 style="font-face:arial; font-size:30px; padding-top:280px;">Click on the Sumbit button to send us your details</h1>
+
+</div>
+<div class="tab">
+  <h1 style="font-face:arial; font-size:30px; padding-top:280px;">Thankyou for your responses. You will be contacted by our GENESIS Placement Officer within 2 working days. <a href="tel:1800 425 8070"> 1800 425 8070</a> for clarifications</h1>
+
+</div>
+
+<!---->
+  <div style="overflow:auto;">
+    <div style="float:right; padding-top:10px;">
+      <button type="button" id="prevBtn" onclick="nextPrev(-1)"  style="background-color:#FE344F">Previous</button>
+      <button type="button" id="nextBtn" onclick="nextPrev(1)" style="background-color:#343AFE">Next</button>
+       <button id="submit" type='submit' onclick="submits(1);">Submit</button>
+    </div>
+  </div>
+  <!-- Circles which indicates the steps of the form: -->
+  <div style="text-align:center;margin-top:40px;">
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step" style="display:none;"></span>
+
+
+  </div>
+
+    </form>
+  </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- Custom Theme JavaScript -->
+  <script src='google-script.js'></script>
+  <script src='extra-scripts.js'></script>
+
+
+</html>
